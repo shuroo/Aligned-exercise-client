@@ -16,10 +16,9 @@ function AddUserComponent({maxId}){
         return window.location.reload();
     }
     //todo: pass via parent and - in state.
-    function addUser(userToAdd) { 
-        console.log('in add user!!')
+    function addUser(userToAdd) {  
         let jsonUsr = JSON.stringify(userToAdd)
-        console.log(jsonUsr)
+        console.log('Saving user:'+jsonUsr)
           axios
             .post(addUserURL,userToAdd )
             .then(() => console.log('User Created'))

@@ -11,9 +11,7 @@ function FooterButtonsComponent({setViewAddUserPg,checkedUserIndexes}) {
     function refreshPage() {
         return window.location.reload();
     }
-    // function refreshPage(){
-    //     window.location.reload();
-    // }
+
     function removeUser(userId){
         let numericUserId = userId;
         // Handle case when the user id is not numeric by nature - convert to build a proper url.

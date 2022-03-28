@@ -4,18 +4,20 @@ import { Button, ButtonGroup, Row } from 'react-bootstrap';
 import UserModel from '../model/UserModel';
 import axios from 'axios';
 
-function AddUserComponent(index){
+function AddUserComponent({maxId}){
 
     const addUserURL = 'http://localhost:9000/users/add';
     const initialStatus = 'Active';
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [counter, setCounter] = useState(index);
-      
+
+    function refreshPage() {
+        return window.location.reload();
+    }
     //todo: pass via parent and - in state.
-    function addUserCpy(userToAdd) { 
-        console.log('in addUser!!');
+    function addUser(userToAdd) { 
+        console.log('in add user!!')
         let jsonUsr = JSON.stringify(userToAdd)
         console.log(jsonUsr)
           axios
@@ -28,16 +30,25 @@ function AddUserComponent(index){
         };
 
     function addUserFetchParams(){
-        // if(!firstName && !lastName){
-        //     throw 'invalid user data. required fields are missing. aborting';
-        //     return;
-        // }
-        //  <!-- onSubmit={e=>e.preventDefault();} --->
+        if(!firstName && !lastName){
+            throw 'invalid user data. required fields are missing. aborting';
+            return;
+        }
+        let nextUserId = maxId; // index
+        try{
+            nextUserId = Number(maxId)+1; 
+        }
+        catch(err){
+                console.log(err)
+                // if the id is correpted, rand some id.
+                nextUserId = Math.floor(Math.random() * 100000)
+        }
+      
+        console.log('nextUserId::::'+nextUserId);
         const userToAdd = new UserModel(firstName,lastName,email,initialStatus,
-            counter);
-        setCounter(counter+1);
-        console.log('before adding user!');
-        addUserCpy(userToAdd);
+            nextUserId);  
+        addUser(userToAdd);  
+        refreshPage();
         return;
     };
     return (

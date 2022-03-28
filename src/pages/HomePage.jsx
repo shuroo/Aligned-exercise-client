@@ -12,16 +12,25 @@ import FooterButtonsComponent from '../components/FooterButtonsComponent';
 function HomePage(){
 
         const fetchUsersURL = '/users';
-        const addUserURL = '/users/add';
-        const deleteUserURL = '/users/delete/';
-
         const [users, setUsers] = useState([]);
         // use these indexes to delete these users from db
-        //const [checkedUserIndexes, setCheckedUserIndexes] = useState([]);
+        const [checkedUserIndexes, setCheckedUserIndexes] = useState([]);
 
-        const [usersCount, setUsersCount] = useState(0);
+        const [usersMaxId, setUsersMaxId] = useState(0);
         const [addUsrFlag, setAddUsrFlag] = useState(false);
-   
+  
+        // Grab the users max id to create a user with a unique id upon next user creation
+        function findUsersMaxId(usersList){
+          let maxId = 0
+          for (var usr of usersList){
+            let usrId = usr._id;
+            if(!isNaN(usrId) &&  Number(usrId) > maxId){
+              maxId = Number(usrId);
+            }
+          }
+          setUsersMaxId(maxId); 
+          console.log('maxId:::::'+maxId)
+        }
         function fetchDBUsers(){
           axios.get(fetchUsersURL)
           .then(res => { 
@@ -31,34 +40,11 @@ function HomePage(){
                   let usersData = [];
                   users.data.map(usr=>usersData.push(usr));
                   setUsers(usersData);
-                  let count = usersData.length+1;
-                  setUsersCount(count);
+                  findUsersMaxId(usersData);
+
               });
           }
-
-      
-        function addUser(userToAdd) { 
-                console.log('in addUser!!');
-                let jsonUsr = JSON.stringify(userToAdd)
-                console.log(jsonUsr)
-                  axios
-                    .post(addUserURL,userToAdd )
-                    .then(() => console.log('User Created'))
-                    .catch(err => {
-                      console.error(err);
-                    });
- 
-                };
-              
-        function removeUser(userId){
-
-                axios
-                .delete(deleteUserURL+userId)
-                .then(() => console.log('User Removed'))
-                .catch(err => {
-                  console.error(err);
-                });
-            };
+    
 
                   // const listUsers = (!!addUsrFlag ? null :
       //    <UserListComponent index={usersCount} users={users} addUser={addUser} 
@@ -69,19 +55,19 @@ function HomePage(){
         useEffect(() => {
           fetchDBUsers();
         },[]);
-
-
+        
         const addUsrPg = (!!addUsrFlag ? 
-          <AddUserComponent index={usersCount} 
-          addUser={addUser}/> : null) 
+          <AddUserComponent maxId={usersMaxId} 
+             /> : null) 
    
              
       return <div>
         <Container>
             <h1>Users</h1>
-            <UserListComponent users={users}></UserListComponent>
-             <FooterButtonsComponent   
-             deleteUserFunction={removeUser} viewAddUserPg={setAddUsrFlag} />
+            <UserListComponent users={users} 
+            checkedUserIndexes={checkedUserIndexes} ></UserListComponent>
+             <FooterButtonsComponent 
+               setViewAddUserPg={setAddUsrFlag}   checkedUserIndexes={checkedUserIndexes} />
              </Container>
         {addUsrPg}
         </div>;

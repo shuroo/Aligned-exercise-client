@@ -1,0 +1,15 @@
+.row {
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1;
+    justify-content: flex-start;
+    margin: 15px 10px;
+    border: 1px solid plum;
+}
+
+.row>* {
+    width: 25%;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    align-items: stretch;
+}

@@ -1,0 +1,21 @@
+.col {
+    border: 3px solid lightgray;
+    background-color: whitesmoke;
+}
+
+.col h1 {
+    text-align: center;
+    margin: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: stretch;
+}
+
+.row>button {
+    width: auto;
+    flex-grow: 1;
+    margin: flex-end;
+    padding: 10px;
+}

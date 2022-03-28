@@ -1,10 +1,12 @@
 class UserModel{
-    constructor(firstName,lastName,email,status,index){
+    constructor(firstName,lastName,email,status,id){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.status = status;
-        this.key=firstName+'_'+lastName+index;
+        //for db persist:
+        this._id=id;
+        // for react id usage:
     }
 }
 

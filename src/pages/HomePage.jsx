@@ -4,10 +4,8 @@ import UserModel from '../model/UserModel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import axios from 'axios';
-import { Container } from 'react-bootstrap';
-import UserListComponent from '../components/UserListComponent';
 import AddUserComponent from '../components/AddUserComponent';
-import FooterButtonsComponent from '../components/FooterButtonsComponent';
+import ListViewComponent from '../components/ListViewComponent';
 
 function HomePage(){
 
@@ -29,7 +27,6 @@ function HomePage(){
             }
           }
           setUsersMaxId(maxId); 
-          console.log('maxId:::::'+maxId)
         }
         function fetchDBUsers(){
           axios.get(fetchUsersURL)
@@ -46,28 +43,30 @@ function HomePage(){
           }
     
           
-        //On Page Load:
+        //On Page Load - Fetch db users:
         useEffect(() => {
           fetchDBUsers();
         },[]);
         
         
-        const usersList = (!addUsrFlag ? ( <Container>
-          <UserListComponent users={users} 
-          checkedUserIndexes={checkedUserIndexes} ></UserListComponent>
-           <FooterButtonsComponent 
-             setViewAddUserPg={setAddUsrFlag}   checkedUserIndexes={checkedUserIndexes} />
-           </Container>) : null);
+        // Each param of the above loads a different page.
+        const usersList = (!addUsrFlag ? <ListViewComponent 
+          
+           users={users} 
+           setViewAddUserPg={setAddUsrFlag} checkedUserIndexes={checkedUserIndexes}/>
+           : null);
 
-
-        const addUsrPg = (!!addUsrFlag ? 
-          <AddUserComponent maxId={usersMaxId} 
-             /> : null) 
+        const addUsrPg = (!!addUsrFlag ? <AddUserComponent maxId={usersMaxId} /> :null)
    
              
       return <div>
-       {usersList}
+        {usersList}
         {addUsrPg}
+        <ListViewComponent 
+          
+           users={users} 
+           setViewAddUserPg={setAddUsrFlag} checkedUserIndexes={checkedUserIndexes}/>
+
         </div>;
   };
       

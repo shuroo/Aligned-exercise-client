@@ -57,17 +57,17 @@ function AddUserComponent({maxId}){
     };
     return (
         <Form >
-        <Form.Group className="mb-3" controlId="userFirstName">
+        <Form.Group className="formItem" controlId="userFirstName">
             <Form.Label>User Name</Form.Label>
             <Form.Control type="text" placeholder="Enter First Name"  
             value={firstName} onChange={e => setFirstName(e.target.value)} />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="userLastName">
+        <Form.Group className="formItem" controlId="userLastName">
             <Form.Label>Last Name</Form.Label> 
             <Form.Control type="text" placeholder="Enter Last Name"  
             value={lastName} onChange={e => setLastName(e.target.value)} />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="userEmail">
+        <Form.Group className="formItem" controlId="userEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter Email"
             value={email} onChange={e => setEmail(e.target.value)}/>

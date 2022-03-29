@@ -1,37 +1,37 @@
-.row {
-    display: flex;
-    background-color: transparent;
-    border: none;
-    align-items: center;
-    border: 1px solid plum;
-    font-weight: bold;
-}
-
-.listItem {
-    background-color: #e8e8e8;
-}
-
-.row>* {
-    width: 30%;
-    font-family: 'Courier New', Courier, monospace;
-    justify-content: space-between;
-    word-break: keep-all;
-}
-
-input[type="checkbox"] {
-    outline: 1px solid;
-}
-
-
-/* 
-.active {
-    color: lightgreen;
-}
-
-.invited {
-    color: lightblue;
-}
-
-.disabled {
-    color: red;
-} */
+    .row {
+        background-color: transparent;
+    }
+    
+    .row>* {
+        width: 30%;
+        justify-content: stretch;
+        white-space: nowrap;
+    }
+    
+    button {
+        float: right;
+        width: 150px;
+        margin: 5px 0 0 10px;
+    }
+    
+    form>* {
+        margin-bottom: 15px;
+    }
+    
+    .Dropdown-root,
+    .form-check {
+        flex-grow: 1;
+    }
+    
+    .imgDiv {
+        float: right;
+        height: 33px;
+        width: 33px;
+        width: fit-content;
+        background-image: url("../../public/pancil_icon.png");
+        background-repeat: no-repeat;
+    }
+    
+    .dropdown-option {
+        color: blue
+    }

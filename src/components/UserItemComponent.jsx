@@ -62,8 +62,10 @@ function UserItemComponent({checkedUsers,user}) {
              <Dropdown options={["Active","Invited","Disabled"]}  onChange={setUserStatus}
             value={user.status} disabled={editStatusDisabled} />  
         
-        <Image className="pancil" src="./pancil_icon.png" onClick={()=>{console.log("!!!");
-       setEditStatusDisabled(false)}}/>  
+    
+        <div className="imgDiv" onClick={()=>{ 
+       setEditStatusDisabled(false)}}/> 
+      
         </Container>
       </Form>
     </Container>

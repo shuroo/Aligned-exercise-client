@@ -47,7 +47,7 @@ function removeCheckedUsers(){
 } 
 
 return (
-<Form.Group className="row">
+<Form.Group >
       <Button variant="primary" type="button" onClick={()=>removeCheckedUsers()}>
         Delete
     </Button><Button variant="primary" type="button" onClick={(e)=>

@@ -48,17 +48,3 @@ input[type="email"] {
 input[type="checkbox"] {
     outline: 1px solid;
 }
-
-
-/* 
-.active {
-    color: lightgreen;
-}
-
-.invited {
-    color: lightblue;
-}
-
-.disabled {
-    color: red;
-} */

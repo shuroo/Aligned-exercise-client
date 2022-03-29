@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { Button, ButtonGroup, Row } from 'react-bootstrap';
 import UserModel from '../model/UserModel';
 import axios from 'axios';
+import './UserItem.css';
 
 function AddUserComponent({maxId}){
 
@@ -56,7 +57,7 @@ function AddUserComponent({maxId}){
         }
     };
     return (
-        <Form >
+        <Form className="addUserForm">
         <Form.Group className="formItem" controlId="userFirstName">
             <Form.Label>User Name</Form.Label>
             <Form.Control type="text" placeholder="Enter First Name"  

@@ -32,6 +32,22 @@
         background-repeat: no-repeat;
     }
     
-    .dropdown-option {
+    .Dropdown-option {
+        font-weight: normal;
+    }
+    
+    .Dropdown-option:nth-child(1) {
+        color: lightgreen
+    }
+    
+    .Dropdown-option:nth-child(2) {
         color: blue
+    }
+    
+    .Dropdown-option:nth-child(3) {
+        color: red
+    }
+    
+    .addUserForm {
+        width: 100vw;
     }

@@ -3,9 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form'; 
 import './UserItem.css';
 import Dropdown from 'react-dropdown';
-import axios from 'axios';
-import { Image } from 'react-bootstrap';
-import Select from 'react-select';
+import axios from 'axios'; 
 
 // Representation for user in the users list.
 function UserItemComponent({checkedUsers,user}) {
@@ -19,9 +17,6 @@ function UserItemComponent({checkedUsers,user}) {
   const setUserStatusURL = 'http://localhost:9000/users/status';
     
   // It should have been passed via the parent, but failed to do this.
-  function refreshPage() {
-      return window.location.reload();
-  }
 
   function setUserStatus(){  
     console.log(JSON.stringify(user))
@@ -44,11 +39,6 @@ function UserItemComponent({checkedUsers,user}) {
     }
     setIsChecked(toCheck)
   }
-
-  const options = [
-    { value: 'Active', label: 'Active' },
-    { value: 'Invited', label: 'Invited' },
-    { value: 'Disabled', label: 'Disabled' }]
   
     return (
     <Container className="listItem">
@@ -59,7 +49,8 @@ function UserItemComponent({checkedUsers,user}) {
                 onChange={(e)=>checkCheckbox(e)}
         label={user.firstName+" "+user.lastName} />
 
-             <Dropdown options={["Active","Invited","Disabled"]}  onChange={setUserStatus}
+             <Dropdown options={["Active","Invited","Disabled"]} 
+              onChange={setUserStatus}
             value={user.status} disabled={editStatusDisabled} />  
         
     

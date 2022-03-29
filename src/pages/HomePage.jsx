@@ -1,6 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
-import UserModel from '../model/UserModel';
+import React, { useState, useEffect } from 'react'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import axios from 'axios';
@@ -53,7 +52,7 @@ function HomePage(){
         const usersList = (!addUsrFlag ? <ListViewComponent 
           
            users={users} 
-           setViewAddUserPg={setAddUsrFlag} checkedUserIndexes={checkedUserIndexes}/>
+           setAddUsrFlag={setAddUsrFlag} checkedUserIndexes={checkedUserIndexes}/>
            : null);
 
         const addUsrPg = (!!addUsrFlag ? <AddUserComponent maxId={usersMaxId} /> :null)
@@ -62,11 +61,7 @@ function HomePage(){
       return <div>
         {usersList}
         {addUsrPg}
-        <ListViewComponent 
-          
-           users={users} 
-           setViewAddUserPg={setAddUsrFlag} checkedUserIndexes={checkedUserIndexes}/>
-
+      
         </div>;
   };
       

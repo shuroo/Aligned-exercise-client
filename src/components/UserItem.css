@@ -1,15 +1,37 @@
 .row {
     display: flex;
-    align-items: stretch;
-    flex-grow: 1;
-    justify-content: flex-start;
-    margin: 15px 10px;
+    background-color: transparent;
+    border: none;
+    align-items: center;
     border: 1px solid plum;
+    font-weight: bold;
+}
+
+.listItem {
+    background-color: #e8e8e8;
 }
 
 .row>* {
-    width: 25%;
-    padding: 10px;
+    width: 30%;
     font-family: 'Courier New', Courier, monospace;
-    align-items: stretch;
+    justify-content: space-between;
+    word-break: keep-all;
 }
+
+input[type="checkbox"] {
+    outline: 1px solid;
+}
+
+
+/* 
+.active {
+    color: lightgreen;
+}
+
+.invited {
+    color: lightblue;
+}
+
+.disabled {
+    color: red;
+} */

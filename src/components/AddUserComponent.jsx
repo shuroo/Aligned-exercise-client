@@ -28,27 +28,32 @@ function AddUserComponent({maxId}){
 
         };
 
-    function addUserFetchParams(){
-        if(!firstName && !lastName){
-            throw 'invalid user data. required fields are missing. aborting';
+    // Build user and send it to the db    
+    function buildAndSendUser(){
+        try{
+            if(!firstName && !lastName){
+                throw 'invalid user data. required fields are missing. aborting';
+                return;
+            }
+            let nextUserId = maxId; // index
+            try{
+                nextUserId = Number(maxId)+1; 
+            }
+            catch(err){
+                    console.log(err)
+                    // if the id is correpted, rand some id and use it for save (should be unique).
+                    nextUserId = Math.floor(Math.random() * 100000)
+            }
+        
+            const userToAdd = new UserModel(firstName,lastName,email,initialStatus,
+                nextUserId);  
+            addUser(userToAdd);  
             return;
         }
-        let nextUserId = maxId; // index
-        try{
-            nextUserId = Number(maxId)+1; 
+        finally{
+            // Reload the page after user addition (will also restore the users list displayed) 
+            refreshPage();
         }
-        catch(err){
-                console.log(err)
-                // if the id is correpted, rand some id.
-                nextUserId = Math.floor(Math.random() * 100000)
-        }
-      
-        console.log('nextUserId::::'+nextUserId);
-        const userToAdd = new UserModel(firstName,lastName,email,initialStatus,
-            nextUserId);  
-        addUser(userToAdd);  
-        refreshPage();
-        return;
     };
     return (
         <Form >
@@ -67,7 +72,7 @@ function AddUserComponent({maxId}){
             <Form.Control type="email" placeholder="Enter Email"
             value={email} onChange={e => setEmail(e.target.value)}/>
         </Form.Group>
-        <Button variant="primary" type="button" onClick={()=>addUserFetchParams()}>
+        <Button variant="primary" type="button" onClick={()=>buildAndSendUser()}>
             Done
         </Button>
         </Form>

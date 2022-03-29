@@ -5,6 +5,7 @@ import './UserItem.css';
 import Dropdown from 'react-dropdown';
 import axios from 'axios';
 import { Image } from 'react-bootstrap';
+import Select from 'react-select';
 
 // Representation for user in the users list.
 function UserItemComponent({checkedUsers,user}) {
@@ -13,7 +14,7 @@ function UserItemComponent({checkedUsers,user}) {
   // parameter to save the checkbox current state -
   const [isChecked, setIsChecked] = useState(false);
 
-  const [editStatusDisabled, setEditStatusDisabled] = useState("DISABLED");
+  const [editStatusDisabled, setEditStatusDisabled] = useState(true);
 
   const setUserStatusURL = 'http://localhost:9000/users/status';
     
@@ -33,7 +34,6 @@ function UserItemComponent({checkedUsers,user}) {
   };
   function checkCheckbox(){
     let userId = user._id;//e.target.id;      
-    console.log('the current user is.....:'+JSON.stringify(user))
     let toCheck = !isChecked
 
     if(toCheck){
@@ -44,17 +44,23 @@ function UserItemComponent({checkedUsers,user}) {
     }
     setIsChecked(toCheck)
   }
+
+  const options = [
+    { value: 'Active', label: 'Active' },
+    { value: 'Invited', label: 'Invited' },
+    { value: 'Disabled', label: 'Disabled' }]
+  
     return (
-    <Container className="formWrapper">
+    <Container className="listItem">
       <Form onSubmit={((e)=>{ e.preventDefault();return false;})}>
-        <Container className="row">
+        <Container className="row ">
         <Form.Check type="checkbox" 
                 checked={isChecked}
                 onChange={(e)=>checkCheckbox(e)}
         label={user.firstName+" "+user.lastName} />
-    
-            <Dropdown options={["Active","Invited","Disabled"]} onChange={setUserStatus} 
-            value={user.status} disabled={editStatusDisabled} />;  
+
+             <Dropdown options={["Active","Invited","Disabled"]}  onChange={setUserStatus}
+            value={user.status} disabled={editStatusDisabled} />  
         
         <Image className="pancil" src="./pancil_icon.png" onClick={()=>{console.log("!!!");
        setEditStatusDisabled(false)}}/>  

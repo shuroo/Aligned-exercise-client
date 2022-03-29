@@ -18,7 +18,7 @@ function UserListComponent({users,checkedUserIndexes}){
     checkedUsers={checkedUserIndexes} />
     })
     return(  
-            <Container>{usersHtmlList}</Container>
+            <Container className="listWrapper">{usersHtmlList}</Container>
             
             )
 

@@ -45,30 +45,28 @@ function HomePage(){
               });
           }
     
-
-                  // const listUsers = (!!addUsrFlag ? null :
-      //    <UserListComponent index={usersCount} users={users} addUser={addUser} 
-      //    removeUser={removeUser} setAddUsrFlag={setAddUsrFlag}/>);         
-
           
         //On Page Load:
         useEffect(() => {
           fetchDBUsers();
         },[]);
         
+        
+        const usersList = (!addUsrFlag ? ( <Container>
+          <UserListComponent users={users} 
+          checkedUserIndexes={checkedUserIndexes} ></UserListComponent>
+           <FooterButtonsComponent 
+             setViewAddUserPg={setAddUsrFlag}   checkedUserIndexes={checkedUserIndexes} />
+           </Container>) : null);
+
+
         const addUsrPg = (!!addUsrFlag ? 
           <AddUserComponent maxId={usersMaxId} 
              /> : null) 
    
              
       return <div>
-        <Container>
-            <h1>Users</h1>
-            <UserListComponent users={users} 
-            checkedUserIndexes={checkedUserIndexes} ></UserListComponent>
-             <FooterButtonsComponent 
-               setViewAddUserPg={setAddUsrFlag}   checkedUserIndexes={checkedUserIndexes} />
-             </Container>
+       {usersList}
         {addUsrPg}
         </div>;
   };

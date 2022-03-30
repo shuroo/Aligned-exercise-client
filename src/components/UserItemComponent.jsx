@@ -18,7 +18,8 @@ function UserItemComponent({checkedUsers,user}) {
     
   // It should have been passed via the parent, but failed to do this.
 
-  function setUserStatus(){  
+  function setUserStatus(status){
+    user.status = status;  
     console.log(JSON.stringify(user))
       axios
       .post(setUserStatusURL,user)
@@ -28,7 +29,7 @@ function UserItemComponent({checkedUsers,user}) {
       });
   };
   function checkCheckbox(){
-    let userId = user._id;//e.target.id;      
+    let userId = user._id;
     let toCheck = !isChecked
 
     if(toCheck){
@@ -50,7 +51,7 @@ function UserItemComponent({checkedUsers,user}) {
         label={user.firstName+" "+user.lastName} />
 
              <Dropdown options={["Active","Invited","Disabled"]} 
-              onChange={setUserStatus}
+              onChange={(e)=>setUserStatus(e.value)}
             value={user.status} disabled={editStatusDisabled} />  
         
     
